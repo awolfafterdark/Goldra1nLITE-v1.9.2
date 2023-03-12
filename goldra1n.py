@@ -4,7 +4,6 @@ from tkinter import *
 from tkinter import messagebox
 import os
 import time
-#from PIL import ImageTk, Image
 from tkinter.simpledialog import askstring
 from tkinter.messagebox import showinfo
 import subprocess
@@ -15,13 +14,11 @@ path = os.getcwd()
 print(path)
 
 root = tk.Tk()
-frame = tk.Frame(root, width="600", height="300")
-
-frame.pack(fill=BOTH,expand=True)
-#frame.configure(background='#ECECEC')
-
+root.title('Goldra1n LITE v1.9.2')
 root.iconbitmap('goldrainicon.ico')
 
+frame = tk.Frame(root, width="600", height="300")
+frame.pack(fill=BOTH,expand=True)
 
 LAST_CONNECTED_UDID = ""
 LAST_CONNECTED_IOS_VER = ""
@@ -43,11 +40,9 @@ def detectDevice():
     if("ERROR:" in fileData):
         #no device was detected, so retry user!
         print("ERROR: No device found!")
-
         messagebox.showinfo("No device detected! 0x404","Try disconnecting and reconnecting your device.")
     else:
         #we definitely have something connected...
-
         #find the UDID
         start = 'UniqueDeviceID: '
         end = 'UseRaptorCerts:'
@@ -70,15 +65,8 @@ def detectDevice():
         if(len(UDID) > 38):
             #stop automatic detection
             timerStatus = 0
-
             print("Found UDID: "+LAST_CONNECTED_UDID)
             messagebox.showinfo("iDevice is detected!","Found iDevice on iOS "+LAST_CONNECTED_IOS_VER)
-#            cbeginExploit10["state"] = "normal"
-#            cbeginExploit2["state"] = "normal"
-            
-            #messagebox.showinfo("Ready to begin!","We are ready to start bypass!")
-            
-            #cbeginExploit10["state"] = "normal"
 
         else:
             print("Couldn't find your device")
@@ -87,11 +75,9 @@ def detectDevice():
 def startDFUCountdown():
     print("Get ready to put device into DFU mode...")
 
-
 def enterRecMode():
     print("Kicking device into recovery mode...")
     os.system(".\\goldra1n\\euphoria_scripts\\enterrecovery.bat")
-
 
 def exitRecMode():
     print("Kicking device out of recovery mode...")
